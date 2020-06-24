@@ -153,7 +153,7 @@ Widget inputField({label, obscureText = false, hintText}) {
       SizedBox(
         height: 5,
       ),
-      TextField(
+      TextFormField(
         obscureText: obscureText,
         decoration: InputDecoration(
           hintText: hintText,

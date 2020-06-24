@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inline/colors/color_constant.dart';
+import 'package:inline/screens/personal_information_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -32,6 +33,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     decoration: BoxDecoration(
                       color: myLightColor,
                       shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(
+                          'assets/images/profile-img.jpg',
+                        ),
+                      ),
                     ),
                   ),
                   Container(
@@ -71,157 +78,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: 10,
                 ),
                 //Personal Info
-                Container(
-                  height: 58,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: myWhiteColor,
-                    border: Border(
-                      bottom: BorderSide(
-                          width: 1.0, color: myDarkGreyColor.withOpacity(0.5)),
-                    ),
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () {
-                        print("Clicked");
-                      },
-                      splashColor: Colors.deepOrange[100],
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.only(left: 0, right: 10),
-                            child: Icon(Icons.account_circle,
-                                size: 32, color: myBlackColor),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10, right: 10),
-                            child: Text('Personal Information',
-                                style: GoogleFonts.openSans(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: myBlackColor)),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                profileTile(Icons.account_circle, 'Personal Information',
+                    PersonalInformationScreen()),
                 //Payment
-                Container(
-                  height: 58,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: myWhiteColor,
-                    border: Border(
-                      bottom: BorderSide(
-                          width: 1.0, color: myDarkGreyColor.withOpacity(0.5)),
-                    ),
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () {
-                        print("Clicked");
-                      },
-                      splashColor: Colors.deepOrange[100],
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.only(left: 0, right: 10),
-                            child: Icon(Icons.credit_card,
-                                size: 32, color: myBlackColor),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10, right: 10),
-                            child: Text('Payments',
-                                style: GoogleFonts.openSans(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: myBlackColor)),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                profileTile(Icons.payment, 'Payments', null),
                 //Notifications
-                Container(
-                  height: 58,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: myWhiteColor,
-                    border: Border(
-                      bottom: BorderSide(
-                          width: 1.0, color: myDarkGreyColor.withOpacity(0.5)),
-                    ),
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () {
-                        print("Clicked");
-                      },
-                      splashColor: Colors.deepOrange[100],
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.only(left: 0, right: 10),
-                            child: Icon(Icons.notifications,
-                                size: 32, color: myBlackColor),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10, right: 10),
-                            child: Text('Notifications',
-                                style: GoogleFonts.openSans(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: myBlackColor)),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                profileTile(Icons.notifications, 'Notifications', null),
                 //Favourite Place
-                Container(
-                  height: 58,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: myWhiteColor,
-                    border: Border(
-                      bottom: BorderSide(
-                          width: 1.0, color: myDarkGreyColor.withOpacity(0.5)),
-                    ),
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () {
-                        print("Clicked");
-                      },
-                      splashColor: Colors.deepOrange[100],
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.only(left: 0, right: 10),
-                            child: Icon(Icons.favorite,
-                                size: 32, color: myBlackColor),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10, right: 10),
-                            child: Text('Favourite Place',
-                                style: GoogleFonts.openSans(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: myBlackColor)),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                profileTile(Icons.favorite, 'Favourite Place', null),
                 SizedBox(
                   height: 20,
                 ),
@@ -259,6 +123,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
           )
         ],
       )),
+    );
+  }
+
+  Widget profileTile(icon, textProperty, navigatorButton) {
+    return Container(
+      height: 58,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: myWhiteColor,
+        border: Border(
+          bottom:
+              BorderSide(width: 1.0, color: myDarkGreyColor.withOpacity(0.5)),
+        ),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => navigatorButton));
+          },
+          splashColor: Colors.deepOrange[100],
+          child: Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(left: 0, right: 10),
+                child: Icon(icon, size: 32, color: myBlackColor),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10, right: 10),
+                child: Text(textProperty,
+                    style: GoogleFonts.openSans(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: myBlackColor)),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

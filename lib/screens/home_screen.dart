@@ -112,8 +112,15 @@ class HomeScreenBody extends StatelessWidget {
                       height: 45,
                       width: 45,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: myBackgroundColor),
+                        borderRadius: BorderRadius.circular(10),
+                        color: myWhiteColor,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                            'assets/images/profile-img.jpg',
+                          ),
+                        ),
+                      ),
                     ),
                   )
                 ],
@@ -366,22 +373,17 @@ class HomeScreenBody extends StatelessWidget {
               height: 156,
               width: double.infinity,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: myLightColor),
+                borderRadius: BorderRadius.circular(10),
+                color: myWhiteColor,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    'assets/images/img-2.jpg',
+                  ),
+                ),
+              ),
               child: Stack(
                 children: <Widget>[
-                  Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        'assets/images/img-2.jpg',
-                        width: 120,
-                        height: 120,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
                   Container(
                     height: double.infinity,
                     width: double.infinity,
