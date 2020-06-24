@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="178.37" height="93" viewBox="0 0 178.37 93">
+  <g id="Group_68" data-name="Group 68" transform="translate(-100.63 -105)">
+    <g id="Group_66" data-name="Group 66" transform="translate(100.629 104)">
+      <g id="Group_65" data-name="Group 65" transform="translate(0.001 0)">
+        <g id="Group_64" data-name="Group 64" transform="translate(0 0)">
+          <rect id="Rectangle_135" data-name="Rectangle 135" width="10.009" height="61.049" rx="5.005" transform="translate(14.254 9.983)" fill="#f27360"/>
+          <path id="Path_39" data-name="Path 39" d="M345.36,193.359a4.319,4.319,0,0,0,2.935,4.105,4.6,4.6,0,0,0,1.3.214V189A4.319,4.319,0,0,0,345.36,193.359Z" transform="translate(-335.385 -162.358)" fill="#f27360"/>
+          <path id="Path_40" data-name="Path 40" d="M345.3,221.79v.008h.008Z" transform="translate(-331.054 -169.21)" fill="#0071bc"/>
+          <path id="Path_41" data-name="Path 41" d="M345.3,221.79v.008h.008l-.008-.008Z" transform="translate(-331.054 -169.21)" fill="#0071bc"/>
+          <path id="Path_42" data-name="Path 42" d="M345.452,209.853a.839.839,0,0,0,1.131.245l8.124-4.667.127-.071,1.717,12.237-4.3,4.192-1.424,1.384a1.685,1.685,0,0,0-.316,1.978l.593,1.147,3.837,7.428a.965.965,0,0,0,1.748-.791l-3.346-8.409,6.218-4.976V200.63h-1.5a2.792,2.792,0,0,0-1.582.49l-.063.055-10.734,7.554a.791.791,0,0,0-.229,1.123Z" transform="translate(-345.31 -164.789)" fill="#f27360"/>
+          <path id="Path_43" data-name="Path 43" d="M340.014,189v8.7h.047a4.327,4.327,0,0,0,0-8.646Z" transform="translate(-325.768 -162.358)" fill="#fff"/>
+          <path id="Path_44" data-name="Path 44" d="M345.31,189Z" transform="translate(-331.063 -162.358)" fill="#00f75c"/>
+          <path id="Path_45" data-name="Path 45" d="M333.75,217.381h0v2.16l.142-.111,6.154,14.239a.965.965,0,0,0,.886.577.987.987,0,0,0,.332-.063.957.957,0,0,0,.577-1.194l-5.031-15.726L338,208.846h0l3.346,6.684a.811.811,0,0,0,1.479-.664L338.235,203.1l-.071-.19a3.488,3.488,0,0,0-2.334-2.16h0a2.655,2.655,0,0,0-.562-.063h-1.5v16.738Z" transform="translate(-319.503 -164.801)" fill="#fff"/>
+          <path id="Path_46" data-name="Path 46" d="M345.3,221.79h0v.008h.008Z" transform="translate(-331.054 -169.21)" fill="#00f75c"/>
+        </g>
+      </g>
+    </g>
+    <text id="nline" transform="translate(128 174)" fill="#f27360" font-size="68" font-family="Nunito-Bold, Nunito" font-weight="700"><tspan x="0" y="0">nline</tspan></text>
+  </g>
+</svg>
