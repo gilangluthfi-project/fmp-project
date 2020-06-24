@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:inline/colors/color_constant.dart';
 import 'package:inline/page_transitions/slide_transition.dart';
 import 'package:inline/screens/profile_screen.dart';
+import 'package:inline/screens/queue_screen.dart';
 import 'package:inline/screens/recent_screen.dart';
 import 'package:inline/screens/top_screen.dart';
 
@@ -425,98 +426,101 @@ class HomeScreenBody extends StatelessWidget {
               height: 10,
             ),
             Container(
-              margin: EdgeInsets.only(left: 20, right: 10),
+              margin: EdgeInsets.only(left: 20, right: 10, bottom: 30),
               //padding: EdgeInsets.only(right: 10),
-              height: 200,
+              height: 210,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  Material(
-                    child: InkWell(
-                      onTap: () {
-                        print('Clicked');
-                      },
-                      child: Container(
-                        width: 156,
-                        child: Card(
-                          elevation: 0.5,
-                          child: Wrap(
-                            children: <Widget>[
-                              Container(
-                                height: 100,
-                                width: 156,
-                                color: myLightColor,
-                              ),
-                              ListTile(
-                                  title: Text('Shop name'),
-                                  subtitle: Text('date'))
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      print('Clicked');
-                    },
-                    child: Container(
-                      width: 156,
-                      child: Card(
-                        elevation: 0.5,
-                        child: Wrap(
-                          children: <Widget>[
-                            Container(
-                              height: 100,
-                              width: 156,
-                              color: myLightColor,
-                            ),
-                            ListTile(
-                                title: Text('Shop name'),
-                                subtitle: Text('date'))
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 156,
-                    child: Card(
-                      elevation: 0.5,
-                      child: Wrap(
-                        children: <Widget>[
-                          Container(
-                            height: 100,
-                            width: 156,
-                            color: myLightColor,
-                          ),
-                          ListTile(
-                              title: Text('Shop name'), subtitle: Text('date'))
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 156,
-                    child: Card(
-                      elevation: 0.5,
-                      child: Wrap(
-                        children: <Widget>[
-                          Container(
-                            height: 100,
-                            width: 156,
-                            color: myLightColor,
-                          ),
-                          ListTile(
-                              title: Text('Shop name'), subtitle: Text('date'))
-                        ],
-                      ),
-                    ),
-                  ),
+                  topCard(context, 'Name 1', 'assets/images/img-1.jpg'),
+                  topCard(context, 'Name 2', 'assets/images/img-2.jpg'),
+                  topCard(context, 'Name 3', 'assets/images/img-1.jpg'),
+                  topCard(context, 'Name 4', 'assets/images/img-2.jpg'),
                 ],
               ),
-            ),
+            )
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget topCard(BuildContext context, shopName, imagePath) {
+    return Container(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => QueueScreen()));
+        },
+        child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          elevation: 1,
+          child: Container(
+            width: 156,
+            child: Column(
+              children: <Widget>[
+                Container(
+                  width: 156,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    ),
+                    color: myLightColor,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                        imagePath,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+                  child: Container(
+                    width: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          child: Text(shopName,
+                              style: GoogleFonts.openSans(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: myBlackColor)),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              child: Text('waiting :',
+                                  style: GoogleFonts.openSans(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                      color: myBlackColor)),
+                            ),
+                            Container(
+                              child: Text('14/25',
+                                  style: GoogleFonts.openSans(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: myPrimaryColor)),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
