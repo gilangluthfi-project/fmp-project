@@ -15,7 +15,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var _passKey = GlobalKey<FormFieldState>();
 
   //form variable
-  String _name;
+  String name;
   String email;
   String password;
   //error variable
