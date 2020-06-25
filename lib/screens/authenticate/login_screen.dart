@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inline/colors/color_constant.dart';
 import 'package:inline/screens/authenticate/register_screen.dart';
+import 'package:inline/screens/home/home_screen.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -127,6 +128,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   onPressed: () {
                                     if (!_formKey.currentState.validate()) {
                                       return;
+                                    } else {
+                                      navigateToHomeScreen(context);
                                     }
                                     _formKey.currentState.save();
                                   },
@@ -191,6 +194,11 @@ class _LoginScreenState extends State<LoginScreen> {
 Future navigateToRegisterScreen(context) async {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => RegisterScreen()));
+}
+
+Future navigateToHomeScreen(context) async {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => HomeScreen()));
 }
 
 Widget inputField(
