@@ -15,10 +15,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var _passKey = GlobalKey<FormFieldState>();
 
   //form variable
-  String _name;
-  String _email;
-  String _password;
-
+  String name;
+  String email;
+  String password;
   //error variable
   String error = '';
 
@@ -87,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         return null;
                                       },
                                       saveValue: (String value) {
-                                        _name = value;
+                                        name = value;
                                       }),
                                   inputField(
                                       label: "Email",
@@ -105,7 +104,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         return null;
                                       },
                                       saveValue: (String value) {
-                                        _email = value;
+                                        email = value;
                                       }),
                                   inputField(
                                       formFieldKey: _passKey,
@@ -134,7 +133,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         return null;
                                       },
                                       saveValue: (String value) {
-                                        _password = value;
+                                        password = value;
                                       }),
                                   SizedBox(
                                     height: 20,
@@ -162,10 +161,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           return;
                                         }
                                         _formKey.currentState.save();
-
-                                        print(_name);
-                                        print(_email);
-                                        print(_password);
                                       },
                                       child: Text(
                                         "Sign up",

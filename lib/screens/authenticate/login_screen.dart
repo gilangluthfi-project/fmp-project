@@ -16,8 +16,8 @@ class _LoginScreenState extends State<LoginScreen> {
   var _passKey = GlobalKey<FormFieldState>();
 
   //form variable
-  String _email;
-  String _password;
+  String email;
+  String password;
 
   //error variable
   String error = '';
@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     return null;
                                   },
                                   saveValue: (String value) {
-                                    _email = value;
+                                    email = value;
                                   }),
                               inputField(
                                   formFieldKey: _passKey,
@@ -129,9 +129,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                       return;
                                     }
                                     _formKey.currentState.save();
-
-                                    print(_email);
-                                    print(_password);
                                   },
                                   child: Text(
                                     "Login",
