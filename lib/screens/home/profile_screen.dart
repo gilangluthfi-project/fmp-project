@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inline/colors/color_constant.dart';
-import 'package:inline/screens/personal_information_screen.dart';
+import 'package:inline/screens/profile/personal_information_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override

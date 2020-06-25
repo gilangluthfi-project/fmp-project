@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inline/colors/color_constant.dart';
 import 'package:inline/page_transitions/slide_transition.dart';
-import 'package:inline/screens/profile_screen.dart';
-import 'package:inline/screens/queue_screen.dart';
-import 'package:inline/screens/recent_screen.dart';
-import 'package:inline/screens/top_screen.dart';
+import 'package:inline/screens/home/profile_screen.dart';
+import 'package:inline/screens/queue/queue_screen.dart';
+import 'package:inline/screens/queue/recent_screen.dart';
+import 'package:inline/screens/queue/top_screen.dart';
 
 import 'myqueue_screen.dart';
 

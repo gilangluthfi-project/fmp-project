@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "45173364191",
+    "firebase_url": "https://inlineapp-f3738.firebaseio.com",
+    "project_id": "inlineapp-f3738",
+    "storage_bucket": "inlineapp-f3738.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45173364191:android:e84f8a2f6149772970606a",
+        "android_client_info": {
+          "package_name": "com.lattestudio.inline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45173364191-89750b9jt8ur5tdbm3l16ckkqsi68ev4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG9sUTVyRUjczPJzM0bGeSDU86sxtC5hM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45173364191-89750b9jt8ur5tdbm3l16ckkqsi68ev4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

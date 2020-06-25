@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inline/colors/color_constant.dart';
 import 'package:inline/page_transitions/slide_transition.dart';
-import 'package:inline/screens/inqueue_screen.dart';
+import 'package:inline/screens/queue/inqueue_screen.dart';
 
 class QueueScreen extends StatefulWidget {
   @override
