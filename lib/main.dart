@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'screens/authenticate/login_screen.dart';
+import 'package:inline/models/user.dart';
+import 'package:inline/screens/validator.dart';
+import 'package:inline/services/auth.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,9 +20,12 @@ class _MyAppState extends State<MyApp> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Color(0xffd86a5a),
     ));
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+    return StreamProvider<User>.value(
+      value: AuthService().user,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Validator(),
+      ),
     );
   }
 }

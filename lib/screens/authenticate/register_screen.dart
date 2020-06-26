@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:inline/screens/home/home_screen.dart';
+import 'package:inline/services/auth.dart';
+import 'package:inline/services/database.dart';
 import 'package:quiver/strings.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inline/colors/color_constant.dart';
-import 'package:inline/screens/authenticate/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
+  final Function toggel;
+  RegisterScreen(this.toggel);
+
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  //loading progress
+  //bool isLoading = false;
+
+  //import auth service
+  AuthService authService = new AuthService();
+  DatabaseService databaseService = new DatabaseService();
+
   //Global Key
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   var _passKey = GlobalKey<FormFieldState>();
@@ -20,6 +32,47 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String password;
   //error variable
   String error = '';
+
+  //text controller
+  TextEditingController userNameTextConroller = new TextEditingController();
+  TextEditingController userEmailTextConroller = new TextEditingController();
+  TextEditingController userPasswordTextConroller = new TextEditingController();
+
+  registerUser() async {
+    if (_formKey.currentState.validate()) {
+      // Map<String, String> userInfoMap = {
+      //   "name": userNameTextConroller.text,
+      //   "email": userEmailTextConroller.text
+      // };
+
+      databaseService.updateUserData(
+          userNameTextConroller.text, userEmailTextConroller.text);
+      //databaseService.uploadUserInfo(userInfoMap);
+      dynamic result = await authService.userSignUp(
+          userEmailTextConroller.text, userPasswordTextConroller.text);
+      if (result == null) {
+        setState(() {
+          error = 'Email have been used';
+        });
+      } else {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      }
+      // authService
+      //     .userSignUp(
+      //         userEmailTextConroller.text, userPasswordTextConroller.text);
+      // setState(() {
+      //   isLoading = true;
+      // });
+      // isLoading ?
+      //     Container(
+      //         child: Center(
+      //           child: CircularProgressIndicator(),
+      //         ),
+      //       )
+      //     :
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,36 +129,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               child: Column(
                                 children: <Widget>[
                                   inputField(
-                                      label: "Name",
-                                      hintText: "input your name",
-                                      keyboardType: TextInputType.text,
-                                      valueStatus: (String value) {
-                                        if (value.isEmpty) {
-                                          return 'Name is required';
-                                        }
-                                        return null;
-                                      },
-                                      saveValue: (String value) {
-                                        name = value;
-                                      }),
+                                    label: "Name",
+                                    hintText: "input your name",
+                                    keyboardType: TextInputType.text,
+                                    controllerName: userNameTextConroller,
+                                    valueStatus: (String value) {
+                                      if (value.isEmpty) {
+                                        return 'Name is required';
+                                      }
+                                      return null;
+                                    },
+                                    // saveValue: (String value) {
+                                    //   name = value;
+                                    // },
+                                  ),
                                   inputField(
-                                      label: "Email",
-                                      hintText: "your@email.com",
-                                      keyboardType: TextInputType.emailAddress,
-                                      valueStatus: (String value) {
-                                        if (value.isEmpty) {
-                                          return 'Email is required';
-                                        }
-                                        if (!RegExp(
-                                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                            .hasMatch(value)) {
-                                          return 'Please input a valid email';
-                                        }
-                                        return null;
-                                      },
-                                      saveValue: (String value) {
-                                        email = value;
-                                      }),
+                                    label: "Email",
+                                    hintText: "your@email.com",
+                                    keyboardType: TextInputType.emailAddress,
+                                    controllerName: userEmailTextConroller,
+                                    valueStatus: (String value) {
+                                      if (value.isEmpty) {
+                                        return 'Email is required';
+                                      }
+                                      if (!RegExp(
+                                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                          .hasMatch(value)) {
+                                        return 'Please input a valid email';
+                                      }
+                                      return null;
+                                    },
+                                    // saveValue: (String value) {
+                                    //   email = value;
+                                    // },
+                                  ),
                                   inputField(
                                       formFieldKey: _passKey,
                                       label: "Password",
@@ -119,22 +176,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         return null;
                                       }),
                                   inputField(
-                                      label: "Retype Password",
-                                      hintText: "retype your password here",
-                                      obscureText: true,
-                                      valueStatus: (confirmPassword) {
-                                        if (confirmPassword.isEmpty)
-                                          return 'Enter confirm password';
-                                        var password =
-                                            _passKey.currentState.value;
-                                        if (!equalsIgnoreCase(
-                                            confirmPassword, password))
-                                          return 'Confirm Password invalid';
-                                        return null;
-                                      },
-                                      saveValue: (String value) {
-                                        password = value;
-                                      }),
+                                    label: "Retype Password",
+                                    hintText: "retype your password here",
+                                    obscureText: true,
+                                    controllerName: userPasswordTextConroller,
+                                    valueStatus: (confirmPassword) {
+                                      if (confirmPassword.isEmpty)
+                                        return 'Enter confirm password';
+                                      var password =
+                                          _passKey.currentState.value;
+                                      if (!equalsIgnoreCase(
+                                          confirmPassword, password))
+                                        return 'Confirm Password invalid';
+                                      return null;
+                                    },
+                                    // saveValue: (String value) {
+                                    //   password = value;
+                                    // },
+                                  ),
                                   SizedBox(
                                     height: 20,
                                   ),
@@ -156,11 +215,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     child: FlatButton(
                                       color: myPrimaryColor,
                                       onPressed: () {
-                                        // navigateToHomePage(context);
-                                        if (!_formKey.currentState.validate()) {
-                                          return;
-                                        }
-                                        _formKey.currentState.save();
+                                        registerUser();
                                       },
                                       child: Text(
                                         "Sign up",
@@ -191,8 +246,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            navigateToLoginScreen(context);
-                                            //widget.toggleView();
+                                            widget.toggel();
                                           },
                                           child: Text(
                                             'Login',
@@ -204,6 +258,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         ),
                                       ],
                                     ),
+                                  ),
+                                  SizedBox(
+                                    height: 80,
                                   ),
                                 ],
                               ),
@@ -223,19 +280,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 }
 
-Future navigateToLoginScreen(context) async {
-  Navigator.push(
-      context, MaterialPageRoute(builder: (context) => LoginScreen()));
-}
+// Future navigateToLoginScreen(context) async {
+//   Navigator.push(
+//       context, MaterialPageRoute(builder: (context) => LoginScreen()));
+// }
 
-Widget inputField(
-    {label,
-    obscureText = false,
-    hintText,
-    formFieldKey,
-    valueStatus,
-    saveValue,
-    keyboardType}) {
+Widget inputField({
+  label,
+  obscureText = false,
+  hintText,
+  formFieldKey,
+  valueStatus,
+  saveValue,
+  keyboardType,
+  controllerName,
+}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -253,6 +312,7 @@ Widget inputField(
         onSaved: saveValue,
         obscureText: obscureText,
         keyboardType: keyboardType,
+        controller: controllerName,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: GoogleFonts.openSans(

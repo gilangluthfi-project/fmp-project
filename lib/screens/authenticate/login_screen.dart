@@ -2,11 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inline/colors/color_constant.dart';
-import 'package:inline/screens/authenticate/register_screen.dart';
 import 'package:inline/screens/home/home_screen.dart';
+import 'package:inline/services/auth.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatefulWidget {
+  final Function toggel;
+  LoginScreen(this.toggel);
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -16,12 +19,47 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   var _passKey = GlobalKey<FormFieldState>();
 
+  //import auth service
+  AuthService authService = new AuthService();
+
   //form variable
   String email;
   String password;
 
   //error variable
   String error = '';
+
+  //text controller
+  TextEditingController userEmailTextConroller = new TextEditingController();
+  TextEditingController userPasswordTextConroller = new TextEditingController();
+
+  loginUser() async {
+    if (_formKey.currentState.validate()) {
+      dynamic result = await authService.userSignIn(
+          userEmailTextConroller.text, userPasswordTextConroller.text);
+      if (result == null) {
+        setState(() {
+          error = 'Invalid email or password, please try again';
+        });
+      } else {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      }
+      // authService
+      //     .userSignUp(
+      //         userEmailTextConroller.text, userPasswordTextConroller.text);
+      // setState(() {
+      //   isLoading = true;
+      // });
+      // isLoading ?
+      //     Container(
+      //         child: Center(
+      //           child: CircularProgressIndicator(),
+      //         ),
+      //       )
+      //     :
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   label: "Email",
                                   hintText: "your@email.com",
                                   keyboardType: TextInputType.emailAddress,
+                                  controllerName: userEmailTextConroller,
                                   valueStatus: (String value) {
                                     if (value.isEmpty) {
                                       return 'Email is required';
@@ -98,6 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   label: "Password",
                                   hintText: "enter your password here",
                                   obscureText: true,
+                                  controllerName: userPasswordTextConroller,
                                   valueStatus: (value) {
                                     if (value.isEmpty)
                                       return 'Please Enter password';
@@ -126,12 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: FlatButton(
                                   color: myPrimaryColor,
                                   onPressed: () {
-                                    if (!_formKey.currentState.validate()) {
-                                      return;
-                                    } else {
-                                      navigateToHomeScreen(context);
-                                    }
-                                    _formKey.currentState.save();
+                                    loginUser();
                                   },
                                   child: Text(
                                     "Login",
@@ -161,8 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        //widget.toggleView();
-                                        navigateToRegisterScreen(context);
+                                        widget.toggel();
                                       },
                                       child: Text(
                                         'Signup',
@@ -191,24 +225,16 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-Future navigateToRegisterScreen(context) async {
-  Navigator.push(
-      context, MaterialPageRoute(builder: (context) => RegisterScreen()));
-}
-
-Future navigateToHomeScreen(context) async {
-  Navigator.push(
-      context, MaterialPageRoute(builder: (context) => HomeScreen()));
-}
-
-Widget inputField(
-    {label,
-    obscureText = false,
-    hintText,
-    formFieldKey,
-    valueStatus,
-    saveValue,
-    keyboardType}) {
+Widget inputField({
+  label,
+  obscureText = false,
+  hintText,
+  formFieldKey,
+  valueStatus,
+  saveValue,
+  keyboardType,
+  controllerName,
+}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -226,6 +252,7 @@ Widget inputField(
         onSaved: saveValue,
         keyboardType: keyboardType,
         obscureText: obscureText,
+        controller: controllerName,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: GoogleFonts.openSans(

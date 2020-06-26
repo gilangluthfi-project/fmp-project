@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inline/colors/color_constant.dart';
+import 'package:inline/screens/authenticate/authenticate.dart';
 import 'package:inline/screens/profile/personal_information_screen.dart';
+import 'package:inline/services/auth.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -9,6 +11,9 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  //import auth service
+  AuthService authService = new AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,7 +105,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: Colors.transparent,
                     child: InkWell(
                       onTap: () {
-                        print("Clicked");
+                        authService.signOut();
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Authenticate()));
                       },
                       splashColor: Colors.deepOrange[100],
                       child: Row(
