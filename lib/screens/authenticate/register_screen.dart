@@ -59,7 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           isLoading = false;
         });
       } else {
-        Navigator.pushReplacement(
+        Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomeScreen()));
       }
       // authService
